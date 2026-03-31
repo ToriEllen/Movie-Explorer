@@ -1,0 +1,372 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500&display=swap');
+ 
+:root {
+  --neon-purple: #b44fff;
+  --neon-blue: #4f8fff;
+  --neon-lilac: #d4a8ff;
+  --glow-purple: 0 0 8px #b44fff, 0 0 20px #b44fff55;
+  --glow-blue: 0 0 8px #4f8fff, 0 0 20px #4f8fff55;
+  --bg: #050508;
+  --surface: #0e0e18;
+  --surface-2: #16162a;
+  --border: #2a2a4a;
+  --text: #e8e8f8;
+  --text-muted: #7878aa;
+}
+ 
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+html { font-size: 16px; }
+ 
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  min-height: 100vh;
+}
+ 
+/* ── TELAS ── */
+#home    { display: block; }
+#results { display: none; }
+#detail  { display: none; }
+ 
+/* ── NAVBAR ── */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(5, 5, 8, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 0 2rem;
+  height: 52px;
+}
+ 
+.nav-logo {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, var(--neon-purple), var(--neon-blue), var(--neon-lilac));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0.1em;
+}
+ 
+.nav-links {
+  display: flex;
+  gap: 0.25rem;
+  list-style: none;
+}
+ 
+.nav-links button {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s;
+}
+ 
+.nav-links button:hover,
+.nav-links button.active {
+  color: var(--neon-lilac);
+  background: rgba(180, 79, 255, 0.1);
+}
+ 
+/* ── HEADER HERO ── */
+.hero-header {
+  padding: 3.5rem 2rem 2rem;
+  text-align: center;
+}
+ 
+.hero-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  background: linear-gradient(135deg, var(--neon-purple) 0%, var(--neon-blue) 50%, var(--neon-lilac) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 20px rgba(180, 79, 255, 0.4));
+  margin-bottom: 0.5rem;
+}
+ 
+.hero-sub {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+ 
+/* ── HEADER COMPACTO (detalhe) ── */
+.detail-topbar {
+  display: none;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.6rem 2rem;
+  background: rgba(5,5,8,0.9);
+  border-bottom: 1px solid var(--border);
+}
+ 
+.detail-topbar-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, var(--neon-purple), var(--neon-blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0.1em;
+}
+ 
+/* ── SEARCH ── */
+.search-wrap {
+  display: flex;
+  max-width: 520px;
+  margin: 0 auto 1rem;
+  border: 1.5px solid var(--neon-purple);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--glow-purple);
+  transition: box-shadow 0.3s;
+}
+ 
+.search-wrap:focus-within {
+  box-shadow: 0 0 12px var(--neon-purple), 0 0 30px rgba(180,79,255,0.4);
+}
+ 
+#search-input {
+  flex: 1;
+  background: var(--surface);
+  border: none;
+  outline: none;
+  padding: 0.85rem 1.2rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+ 
+#search-input::placeholder { color: var(--text-muted); }
+ 
+#search-btn {
+  background: linear-gradient(135deg, var(--neon-purple), var(--neon-blue));
+  border: none;
+  color: #fff;
+  padding: 0 1.4rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  transition: opacity 0.2s;
+}
+ 
+#search-btn:hover { opacity: 0.85; }
+ 
+/* ── SEÇÃO ── */
+.section-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--neon-purple);
+  padding: 0 2rem;
+  margin-bottom: 1rem;
+}
+ 
+/* ── GRIDS ── */
+#popular-grid,
+#results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+  gap: 1.2rem;
+  padding: 0 2rem 3rem;
+}
+ 
+/* ── CARDS ── */
+.movie-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), border-color 0.25s, box-shadow 0.25s;
+}
+ 
+.movie-card:hover {
+  transform: scale(1.05);
+  border-color: var(--neon-purple);
+  box-shadow: 0 0 12px var(--neon-purple), 0 0 30px rgba(180,79,255,0.25), 0 8px 24px rgba(0,0,0,0.6);
+}
+ 
+.movie-card img {
+  width: 100%;
+  aspect-ratio: 2/3;
+  object-fit: cover;
+  display: block;
+  background: var(--surface-2);
+}
+ 
+.no-poster {
+  width: 100%;
+  aspect-ratio: 2/3;
+  background: var(--surface-2);
+  display: grid;
+  place-items: center;
+  font-size: 2.5rem;
+  color: var(--text-muted);
+}
+ 
+.movie-card-body {
+  padding: 0.65rem 0.75rem 0.75rem;
+}
+ 
+.movie-card-title {
+  font-size: 0.82rem;
+  font-weight: 500;
+  line-height: 1.35;
+  margin-bottom: 0.4rem;
+  display: -webkit-box;
+ /* -webkit-line-clamp: 2;*/
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+ 
+.movie-card-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+ 
+.movie-card-rating {
+  color: var(--neon-lilac);
+  font-weight: 500;
+}
+ 
+/* ── RESULTS HEADER ── */
+.results-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.2rem 2rem;
+  flex-wrap: wrap;
+}
+ 
+.results-label {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.85rem;
+  color: var(--neon-lilac);
+  letter-spacing: 0.05em;
+  flex: 1;
+}
+ 
+/* ── BOTÃO VOLTAR ── */
+#back-btn,
+#detail-back-btn {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.82rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+ 
+#back-btn:hover,
+#detail-back-btn:hover {
+  color: var(--neon-lilac);
+  border-color: var(--neon-purple);
+  box-shadow: 0 0 6px rgba(180,79,255,0.3);
+}
+ 
+/* ── DETALHE ── */
+#detail {
+  padding-bottom: 3rem;
+}
+ 
+.detail-banner-wrap {
+  position: relative;
+  width: 100%;
+  height: clamp(200px, 40vw, 420px);
+  overflow: hidden;
+}
+ 
+.detail-banner {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+ 
+.detail-banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 40%, var(--bg) 100%);
+}
+ 
+.detail-body {
+  padding: 1.5rem 2rem;
+  max-width: 860px;
+}
+ 
+.detail-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(1.5rem, 4vw, 2.8rem);
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--text) 60%, var(--neon-lilac));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.8rem;
+  line-height: 1.15;
+}
+ 
+.detail-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-bottom: 1.2rem;
+}
+ 
+.detail-badge {
+  font-size: 0.78rem;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+ 
+.detail-badge.rating {
+  border-color: rgba(180,79,255,0.5);
+  color: var(--neon-lilac);
+  box-shadow: 0 0 6px rgba(180,79,255,0.2);
+}
+ 
+.detail-overview {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: rgba(232,232,248,0.8);
+}
+ 
+/* ── RESPONSIVE ── */
+@media (max-width: 480px) {
+  .hero-header { padding: 2rem 1rem 1.5rem; }
+  #popular-grid, #results-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); padding: 0 1rem 2rem; gap: 0.8rem; }
+  .section-title, .results-header, .detail-body { padding-left: 1rem; padding-right: 1rem; }
+  nav { padding: 0 1rem; gap: 1rem; }
+}

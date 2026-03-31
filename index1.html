@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Explorer</title>
+    <link rel="stylesheet" href="style1.css">
+    <link rel=" icon" type="image/png" href="movies-podcast.png" title="podcast de filmes ícones">
+</head>
+<body>
+ 
+    <!-- NAVBAR -->
+    <nav>
+        <span class="nav-logo">MOVIE EXPLORER</span>
+        <ul class="nav-links">
+            <li><button id="nav-home" class="active" onclick="goHome()">Home</button></li>
+            <li><button id="nav-search" onclick="focusSearch()">Buscar</button></li>
+        </ul>
+    </nav>
+ 
+    <!-- TELA 1: HOME -->
+    <div id="home">
+        <div class="hero-header">
+            <h1 class="hero-title">MOVIE EXPLORER</h1>
+            <p class="hero-sub">Descubra seu próximo filme favorito</p>
+            <div class="search-wrap">
+                <input type="text" id="search-input" placeholder="Buscar filme..." />
+                <button id="search-btn">Buscar</button>
+            </div>
+        </div>
+        <p class="section-title">Em alta agora</p>
+        <div id="popular-grid"></div>
+    </div>
+ 
+    <!-- TELA 2: RESULTADOS -->
+    <div id="results">
+        <div class="results-header">
+            <button id="back-btn">← Voltar</button>
+            <span class="results-label" id="results-title"></span>
+        </div>
+        <div id="results-grid"></div>
+    </div>
+ 
+    <!-- TELA 3: DETALHE -->
+    <div id="detail">
+        <div id="detail-content"></div>
+    </div>
+ 
+    <script src="App.js"></script>
+</body>
+</html>
