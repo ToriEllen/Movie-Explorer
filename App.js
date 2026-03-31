@@ -9,7 +9,9 @@ async function searchMovies(query) {
     const data = await response.json();
     const movies = data.results
 
-    const container = document.getElementById('results')
+    showScreen('results');
+
+    const container = document.getElementById('results-grid')
     container.innerHTML = '';
 
     movies.forEach(movie => {
@@ -43,10 +45,14 @@ async function searchMovies(query) {
     
   searchMovies('');
 
-  /*function showScreen(screenId) {
+  document.getElementById('back-btn').addEventListener('click', () => {
+    showScreen('home');
+});
+
+  function showScreen(screenId) {
     document.getElementById('home').style.display = 'none';
     document.getElementById('results').style.display = 'none';
     document.getElementById('detail').style.display = 'none';
 
     document.getElementById(screenId).style.display = 'block';
-}*/
+}
