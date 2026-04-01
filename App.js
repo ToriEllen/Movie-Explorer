@@ -2,6 +2,8 @@
   const BASE_URL = 'https://api.themoviedb.org/3';
   const IMG_BASE  = 'https://image.tmdb.org/t/p/w500';
 
+  let lastScreen = 'home';
+
   function showScreen(screenId) {
       document.getElementById('home').style.display = 'none';
       document.getElementById('results').style.display = 'none';
@@ -10,6 +12,7 @@
   }
 
   function goHome() {
+        lastScreen = 'home';
       showScreen('home');
   }
 
@@ -37,7 +40,14 @@
           </div>
       `;
 
-      card.addEventListener('click', () => getMovieDetail(movie.id));
+     
+      card.addEventListener('click', () => {
+            lastScreen = document.getElementById('results').style.display === 'block'
+                ? 'results'
+                : 'home';
+
+            getMovieDetail(movie.id);
+        });
       container.appendChild(card);
   }
 
@@ -54,11 +64,13 @@
 
   
   async function searchMovies(query) {
+      if (!query.trim()) return;
       const url = `${BASE_URL}/search/movie?api_key=${API_KEY}&language=pt-BR&query=${query}`;
       const response = await fetch(url);
       const data = await response.json();
 
       showScreen('results');
+      lastScreen = 'results';
 
       document.getElementById('results-title').textContent = `Resultados para "${query}"`;
 
@@ -94,7 +106,7 @@
       `;
 
       document.getElementById('detail-back-btn').addEventListener('click', () => {
-          showScreen('results');
+          showScreen(lastScreen);
       });
   }
 
